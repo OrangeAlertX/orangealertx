@@ -13,44 +13,50 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v4
 
-      - name: Get Artifact
-        uses: actions/upload-artifact@v4
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB_PAGES }}
         with:
-          name: README
-          path: ./README.md
-  DeployToGitHubPages:
-    runs-on: ubuntu-latest
-    needs: GetNewVersion
+          source-directory: './README.md'
+          destination-github-username: 'OrangeAlertX'
+          destination-repository-name: 'OrangeAlertx.github.io'
+          user-email: orangealertx@gmail.com
+          user-name: bogdan_sevruk
+          target-branch: main
+  # DeployToGitHubPages:
+  #   runs-on: ubuntu-latest
+  #   needs: GetNewVersion
 
-    steps:
-      - name: set git
-        run: |
-          git init --initial-branch=main
-          git config user.email "orangealertx@gmail.com"
-          git config user.name "bogdan_sevruk"
+  #   steps:
+  #     - name: set git
+  #       run: |
+  #         git init --initial-branch=main
+  #         git config user.email "orangealertx@gmail.com"
+  #         git config user.name "bogdan_sevruk"
 
-      - name: Set connection
-        env: 
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git remote set-url origin https://$GITHUB_TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io
-      - name: pull
-        run: git pull origin main
+  #     - name: Set connection
+  #       env: 
+  #         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
+  #       run: git remote set-url origin https://$GITHUB_TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io
+  #     - name: pull
+  #       run: git pull origin main
 
-      - name: Clear current version
-        run: rm -rf ./*
+  #     - name: Clear current version
+  #       run: rm -rf ./*
       
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: README
-          path: ./
+  #     - name: Download Artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: README
+  #         path: ./
 
-      - name: Push to GitHub Actions - local commit
-        run: |
-          git add --all
-          git commit -m 'autosync'
+  #     - name: Push to GitHub Actions - local commit
+  #       run: |
+  #         git add --all
+  #         git commit -m 'autosync'
 
-      - name: Deploy
-        env: 
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git push origin main
+  #     - name: Deploy
+  #       env: 
+  #         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
+  #       run: git push origin main
