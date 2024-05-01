@@ -35,10 +35,10 @@ jobs:
           path: ./
 
       - name: Push to GitHub Actions
-        run: | 
+        run: |
           git add --all && git commit -m 'autosync'
           git remote remove origin
           git remote add origin https://${{ secrets.TOKEN_GITHUB_PAGES }}@github.com/OrangeAlertX/OrangeAlertx.github.io
-          git config --global user.email "orangealertx@gmail.com"
-          git config --global user.name "bogdan_sevruk"
-          git push
+          git config user.email "orangealertx@gmail.com"
+          git config user.name "bogdan_sevruk"
+          git push origin main
