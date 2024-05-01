@@ -32,12 +32,11 @@ jobs:
       - name: Set connection
         env: 
           TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git remote add origin https://$TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io
+        run: git config --global url.https://$TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io
 
       - name: pull
         run: |
           git pull origin main
-          git rev-parse --abbrev-ref HEAD
 
       - name: Clear current version
         run: rm -rf ./*
