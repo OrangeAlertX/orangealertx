@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: set git
         run: |
-          git init
+          git init --initial-branch=main
           git config user.email "orangealertx@gmail.com"
           git config user.name "bogdan_sevruk"
 
@@ -40,9 +40,7 @@ jobs:
           git rev-parse --abbrev-ref HEAD
 
       - name: Clear current version
-        run: | 
-          rm -rf ./*
-          ls -a
+        run: rm -rf ./*
       
       - name: Download Artifact
         uses: actions/download-artifact@v4
@@ -56,4 +54,4 @@ jobs:
           git commit -m 'autosync'
 
       - name: Deploy
-        run: git push origin master:main
+        run: git push origin main
