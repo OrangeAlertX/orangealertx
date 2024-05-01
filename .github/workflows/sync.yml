@@ -51,4 +51,4 @@ jobs:
           git commit -m 'autosync'
 
       - name: Deploy
-        run: git push origin main
+        run: git push origin master:main
