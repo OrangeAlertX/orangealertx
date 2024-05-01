@@ -40,8 +40,7 @@ jobs:
           git config user.name "bogdan_sevruk"
       - name: Push to GitHub Actions - local commit
         run: |
-          echo ./README.md
-          ls
+          cat ./README.md
           git status
           git add --all
           git status
