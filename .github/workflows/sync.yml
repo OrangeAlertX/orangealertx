@@ -19,35 +19,37 @@ jobs:
           name: README
           path: ./README.md
 
-      - name: Get GitPahes repository
-        uses: actions/checkout@v4
-        with:
-          name: OrangeAlertX/OrangeAlertx.github.io
-          toket: ${{ secrets.TOKEN_GITHUB_PAGES }}
+      - name: Clear workspace
+        run: rm -rf ./{*,.*}
 
-      - name: Delete previous version
+      - name: set git
+        run: |
+          git init
+          git config user.email "orangealertx@gmail.com"
+          git config user.name "bogdan_sevruk"
+
+      - name: Set connection
+        run: |
+          git remote remove origin
+          git remote add origin https://${{ secrets.TOKEN_GITHUB_PAGES }}@github.com/OrangeAlertX/OrangeAlertx.github.io
+
+      - name: pull
+        run:
+          git pull origin main
+
+      - name: Clear current version
         run: rm -rf ./*
-
+      
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: README
           path: ./
 
-      - name: Push to GitHub Actions - set config
-        run: |
-          git config user.email "orangealertx@gmail.com"
-          git config user.name "bogdan_sevruk"
       - name: Push to GitHub Actions - local commit
         run: |
-          cat ./README.md
-          git status
           git add --all
-          git status
           git commit -m 'autosync'
-      - name: Set connection
-        run: |
-          git remote remove origin
-          git remote add origin https://${{ secrets.TOKEN_GITHUB_PAGES }}@github.com/OrangeAlertX/OrangeAlertx.github.io
+
       - name: Deploy
         run: git push origin main
