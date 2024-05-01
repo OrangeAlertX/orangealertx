@@ -26,7 +26,7 @@ jobs:
           toket: ${{ secrets.TOKEN_GITHUB_PAGES }}
 
       - name: Delete previous version
-        run: rm -r ./
+        run: rm -rf ./
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
