@@ -31,8 +31,8 @@ jobs:
 
       - name: Set connection
         env: 
-          TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git remote add origin https://${TOKEN_GITHUB_PAGES}@github.com/OrangeAlertX/OrangeAlertx.github.io
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
+        run: git remote add origin https://github.com/OrangeAlertX/OrangeAlertx.github.io
 
       - name: pull
         run: |
