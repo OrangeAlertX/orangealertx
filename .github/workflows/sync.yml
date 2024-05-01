@@ -32,11 +32,9 @@ jobs:
       - name: Set connection
         env: 
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io.git
-
+        run: git remote set-url origin https://$GITHUB_TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io
       - name: pull
-        run: |
-          git pull origin main
+        run: git pull origin main
 
       - name: Clear current version
         run: rm -rf ./*
