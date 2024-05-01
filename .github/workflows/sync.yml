@@ -53,4 +53,6 @@ jobs:
       - name: Deploy
         env: 
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git push origin main
+        run: |
+          git config --list
+          git push origin main
