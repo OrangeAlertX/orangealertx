@@ -35,4 +35,8 @@ jobs:
           path: ./
 
       - name: Push to GitHub Actions
-        run: git push https://github.com/OrangeAlertX/OrangeAlertx.github.io
+        run: | 
+          git remote remove origin
+          git remote add origin https://${{ secrets.TOKEN_GITHUB_PAGES }}@github.com/OrangeAlertX/OrangeAlertx.github.io
+          git add --all && git commit -m 'autosync'
+          git push
