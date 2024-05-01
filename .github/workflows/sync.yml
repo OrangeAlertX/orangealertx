@@ -30,9 +30,7 @@ jobs:
           git config user.name "bogdan_sevruk"
 
       - name: Set connection
-        env: 
-          TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: git config --global url.https://$TOKEN@github.com/OrangeAlertX/OrangeAlertx.github.io
+        run: git config --global url.https://${{ secrets.TOKEN_GITHUB_PAGES }}@github.com/OrangeAlertX/OrangeAlertx.github.io
 
       - name: pull
         run: |
