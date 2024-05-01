@@ -1,4 +1,8 @@
-### Hi there 👋
+### Bogdan Sevruk, Web Developer
+#### My leetcode:
+  <https://leetcode.com/orangealertx/>
+#### Projects:
+  <https://orangealertx.github.io/inclusive-research-webdev/>
 
 <!--
 **OrangeAlertX/orangealertx** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
