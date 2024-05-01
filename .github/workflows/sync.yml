@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  DeployToGitHubPages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Get Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: README
+          path: ./README.md
+
+      - name: Get GitPahes repository
+        uses: actions/checkout@v4
+        with:
+          name: OrangeAlertX/OrangeAlertx.github.io
+          toket: ${{ secrets.TOKEN_GITHUB_PAGES }}
+
+      - name: Delete previous version
+        run: rm -r .
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: README
+          path: ./
+
+      - name: Push to GitHub Actions
+        run: git push https://github.com/OrangeAlertX/OrangeAlertx.github.io
