@@ -53,4 +53,4 @@ jobs:
       - name: Deploy
         env: 
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
-        run: export GITHUB_TOKEN=$GITHUB_TOKEN git push origin HEAD:main
+        run: export GITHUB_TOKEN=$GITHUB_TOKEN; git push origin main
