@@ -30,8 +30,6 @@ jobs:
           git config user.name "bogdan_sevruk"
 
       - name: Set connection
-        env: 
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
         run: git remote add origin https://github.com/OrangeAlertX/OrangeAlertx.github.io
 
       - name: pull
@@ -53,4 +51,6 @@ jobs:
           git commit -m 'autosync'
 
       - name: Deploy
+        env: 
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB_PAGES }}
         run: git push origin main
