@@ -13,12 +13,17 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v4
 
+      - name: Make output directory
+        run: |
+          mkdir output
+          mv README.md output
+
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB_PAGES }}
         with:
-          source-directory: './README.md'
+          source-directory: './output'
           destination-github-username: 'OrangeAlertX'
           destination-repository-name: 'OrangeAlertx.github.io'
           user-email: orangealertx@gmail.com
