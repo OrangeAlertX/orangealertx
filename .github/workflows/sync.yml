@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  DeployToGitHubPages:
+  GetNewVersion:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +18,10 @@ jobs:
         with:
           name: README
           path: ./README.md
+  DeployToGitHubPages:
+    runs-on: ubuntu-latest
 
-      - name: Clear workspace
-        run: rm -rf ./{*,.*}
-
+    steps:
       - name: set git
         run: |
           git init
